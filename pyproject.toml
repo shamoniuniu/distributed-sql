@@ -1,0 +1,88 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "distributed-sql"
+version = "0.1.0"
+description = "A course-oriented distributed SQL execution engine."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "fastavro==1.12.1",
+    "fastapi==0.116.1",
+    "httpx==0.28.1",
+    "pydantic-settings==2.10.1",
+    "pydantic==2.11.7",
+    "pyarrow==21.0.0",
+    "pyiceberg[sql-sqlite]==0.10.0",
+    "sqlglot==27.14.0",
+    "tzdata==2025.2",
+    "uvicorn[standard]==0.35.0",
+]
+
+[project.scripts]
+distributed-sql-coordinator = "distributed_sql.coordinator.main:main"
+distributed-sql-worker = "distributed_sql.worker.main:main"
+distributed-sql-local = "distributed_sql.local_cluster:main"
+distributed-sql = "distributed_sql.cli.main:main"
+
+[dependency-groups]
+dev = [
+    "duckdb==1.4.0",
+    "mypy==1.17.1",
+    "pytest-asyncio==1.1.0",
+    "pytest-cov==6.2.1",
+    "pytest-timeout==2.4.0",
+    "pytest==8.4.1",
+    "pyyaml==6.0.3",
+    "ruff==0.12.11",
+    "types-pyyaml==6.0.12.20250822",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/distributed_sql"]
+
+[tool.pytest.ini_options]
+addopts = "--strict-config --strict-markers -ra"
+asyncio_mode = "auto"
+testpaths = ["tests"]
+timeout = 10
+timeout_method = "thread"
+markers = [
+    "unit: fast isolated tests",
+    "property: deterministic property and invariant tests",
+    "differential: compares engine results with an independent reference",
+    "integration: small distributed or service integration tests",
+    "fault: cancellation, retry, corruption, and resource failure tests",
+    "stress: independently selected large-data acceptance tests",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["distributed_sql"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = [".tools"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC", "RUF"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["src", "tests"]
+
+[[tool.mypy.overrides]]
+module = ["uvicorn"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["duckdb", "fastavro", "fastavro.*", "pyarrow", "pyarrow.*"]
+ignore_missing_imports = true

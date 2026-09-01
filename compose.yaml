@@ -1,0 +1,118 @@
+name: distributed-sql
+
+x-worker: &worker
+  image: distributed-sql-worker:0.1.0
+  build:
+    context: .
+    target: worker
+  init: true
+  restart: unless-stopped
+  read_only: true
+  depends_on:
+    coordinator:
+      condition: service_healthy
+  environment: &worker-environment
+    DISTRIBUTED_SQL_WORKER_HOST: 0.0.0.0
+    DISTRIBUTED_SQL_WORKER_PORT: "8091"
+    DISTRIBUTED_SQL_WORKER_COORDINATOR_URL: http://coordinator:8080
+    DISTRIBUTED_SQL_WORKER_HEARTBEAT_INTERVAL_SECONDS: ${DISTRIBUTED_SQL_COMPOSE_HEARTBEAT_INTERVAL_SECONDS:-2}
+    DISTRIBUTED_SQL_WORKER_MEMORY_LIMIT_BYTES: "67108864"
+    DISTRIBUTED_SQL_WORKER_TEMP_DIRECTORY: /var/lib/distributed-sql/tmp
+    DISTRIBUTED_SQL_WORKER_TASK_START_DELAY_SECONDS: ${DISTRIBUTED_SQL_COMPOSE_TASK_START_DELAY_SECONDS:-0}
+    DISTRIBUTED_SQL_WORKER_OBJECT_STORE_ENDPOINT: http://minio:9000
+    DISTRIBUTED_SQL_WORKER_OBJECT_STORE_ACCESS_KEY: ${MINIO_ROOT_USER:-distributed-sql}
+    DISTRIBUTED_SQL_WORKER_OBJECT_STORE_SECRET_KEY: ${MINIO_ROOT_PASSWORD:-distributed-sql-secret}
+    DISTRIBUTED_SQL_WORKER_OBJECT_STORE_BUCKET: ${DISTRIBUTED_SQL_OBJECT_STORE_BUCKET:-distributed-sql}
+    DISTRIBUTED_SQL_WORKER_OBJECT_STORE_REGION: ${DISTRIBUTED_SQL_OBJECT_STORE_REGION:-us-east-1}
+    DISTRIBUTED_SQL_WORKER_OBJECT_STORE_SECURE: "false"
+    DISTRIBUTED_SQL_WORKER_REMOTE_TASK_AUTH_TOKEN: ${DISTRIBUTED_SQL_REMOTE_TASK_AUTH_TOKEN:-local-compose-task-token}
+  tmpfs:
+    - /tmp
+    - /var/lib/distributed-sql/tmp
+  networks:
+    - distributed-sql
+  security_opt:
+    - no-new-privileges:true
+
+services:
+  coordinator:
+    image: distributed-sql-coordinator:0.1.0
+    build:
+      context: .
+      target: coordinator
+    init: true
+    restart: unless-stopped
+    read_only: true
+    depends_on:
+      minio:
+        condition: service_healthy
+    environment:
+      DISTRIBUTED_SQL_COORDINATOR_HOST: 0.0.0.0
+      DISTRIBUTED_SQL_COORDINATOR_PORT: "8080"
+      DISTRIBUTED_SQL_COORDINATOR_LEASE_TTL_SECONDS: ${DISTRIBUTED_SQL_COMPOSE_LEASE_TTL_SECONDS:-6}
+      DISTRIBUTED_SQL_COORDINATOR_LEASE_CHECK_INTERVAL_SECONDS: ${DISTRIBUTED_SQL_COMPOSE_LEASE_CHECK_INTERVAL_SECONDS:-1}
+      DISTRIBUTED_SQL_COORDINATOR_CATALOG_PATH: /var/lib/distributed-sql/catalog/catalog.db
+      DISTRIBUTED_SQL_COORDINATOR_OBJECT_STORE_ENDPOINT: http://minio:9000
+      DISTRIBUTED_SQL_COORDINATOR_OBJECT_STORE_ACCESS_KEY: ${MINIO_ROOT_USER:-distributed-sql}
+      DISTRIBUTED_SQL_COORDINATOR_OBJECT_STORE_SECRET_KEY: ${MINIO_ROOT_PASSWORD:-distributed-sql-secret}
+      DISTRIBUTED_SQL_COORDINATOR_OBJECT_STORE_BUCKET: ${DISTRIBUTED_SQL_OBJECT_STORE_BUCKET:-distributed-sql}
+      DISTRIBUTED_SQL_COORDINATOR_OBJECT_STORE_REGION: ${DISTRIBUTED_SQL_OBJECT_STORE_REGION:-us-east-1}
+      DISTRIBUTED_SQL_COORDINATOR_OBJECT_STORE_SECURE: "false"
+      DISTRIBUTED_SQL_COORDINATOR_OBJECT_STORE_CREATE_BUCKET: "true"
+      DISTRIBUTED_SQL_COORDINATOR_REMOTE_TASK_AUTH_TOKEN: ${DISTRIBUTED_SQL_REMOTE_TASK_AUTH_TOKEN:-local-compose-task-token}
+    ports:
+      - "8080:8080"
+    volumes:
+      - coordinator-data:/var/lib/distributed-sql/catalog
+    tmpfs:
+      - /tmp
+      - /var/lib/distributed-sql/runtime
+    networks:
+      - distributed-sql
+    security_opt:
+      - no-new-privileges:true
+
+  worker-1:
+    <<: *worker
+    environment:
+      <<: *worker-environment
+      DISTRIBUTED_SQL_WORKER_ID: worker-1
+      DISTRIBUTED_SQL_WORKER_ADVERTISED_HOST: worker-1
+
+  worker-2:
+    <<: *worker
+    environment:
+      <<: *worker-environment
+      DISTRIBUTED_SQL_WORKER_ID: worker-2
+      DISTRIBUTED_SQL_WORKER_ADVERTISED_HOST: worker-2
+
+  minio:
+    image: minio/minio:RELEASE.2025-04-22T22-12-26Z@sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e
+    command: server /data --console-address ":9001"
+    restart: unless-stopped
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-distributed-sql}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-distributed-sql-secret}
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio-data:/data
+    networks:
+      - distributed-sql
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:9000/minio/health/live"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+      start_period: 10s
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  distributed-sql:
+    name: distributed-sql
+
+volumes:
+  coordinator-data:
+  minio-data:

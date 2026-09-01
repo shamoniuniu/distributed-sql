@@ -1,0 +1,278 @@
+{
+  "catalog_restart": {
+    "active_worker_ids": [
+      "worker-2"
+    ],
+    "catalog_persisted": true,
+    "coordinator_restarted": true,
+    "query_id": "8bfc15cd-14c4-427a-afdc-0dc7f6e82710",
+    "query_state": "succeeded",
+    "rows": [
+      {
+        "id": 1,
+        "value": 10
+      },
+      {
+        "id": 2,
+        "value": 20
+      },
+      {
+        "id": 3,
+        "value": 30
+      }
+    ]
+  },
+  "csv_import": {
+    "format": "csv",
+    "location": "s3://distributed-sql/deployment-smoke/imported-numbers",
+    "partition_count": 2,
+    "row_count": 3
+  },
+  "fault_injection": {
+    "container_id": "041ba13e069489e1a80bfaa629eb25b9ae2da4713bc5ffe956336367f97f76a6",
+    "killed_at": "2026-08-31T14:37:16.489393+00:00",
+    "killed_worker_id": "worker-1",
+    "observed_running_attempt_id": "remote-004-exchange_project_2_global-task-00000-attempt-000",
+    "observed_state_before_kill": "running"
+  },
+  "recovery": {
+    "all_attempts": [
+      {
+        "attempt_id": "remote-000-scan_1-task-00000-attempt-000",
+        "attempt_number": 0,
+        "duration_seconds": 4.0827,
+        "error": null,
+        "finished_at": "2026-08-31T14:37:12.121479Z",
+        "query_id": "535e87c8-e8ba-4ccf-9751-7ea04aa192b9",
+        "stage_id": "remote-000-scan_1",
+        "started_at": "2026-08-31T14:37:08.038779Z",
+        "state": "succeeded",
+        "task_id": "remote-000-scan_1-task-00000",
+        "worker_id": "worker-1"
+      },
+      {
+        "attempt_id": "remote-000-scan_1-task-00001-attempt-000",
+        "attempt_number": 0,
+        "duration_seconds": 4.059626,
+        "error": null,
+        "finished_at": "2026-08-31T14:37:12.096166Z",
+        "query_id": "535e87c8-e8ba-4ccf-9751-7ea04aa192b9",
+        "stage_id": "remote-000-scan_1",
+        "started_at": "2026-08-31T14:37:08.036540Z",
+        "state": "succeeded",
+        "task_id": "remote-000-scan_1-task-00001",
+        "worker_id": "worker-2"
+      },
+      {
+        "attempt_id": "remote-002-project_2-task-00000-attempt-000",
+        "attempt_number": 0,
+        "duration_seconds": 4.041531,
+        "error": null,
+        "finished_at": "2026-08-31T14:37:16.216682Z",
+        "query_id": "535e87c8-e8ba-4ccf-9751-7ea04aa192b9",
+        "stage_id": "remote-002-project_2",
+        "started_at": "2026-08-31T14:37:12.175151Z",
+        "state": "succeeded",
+        "task_id": "remote-002-project_2-task-00000",
+        "worker_id": "worker-1"
+      },
+      {
+        "attempt_id": "remote-002-project_2-task-00001-attempt-000",
+        "attempt_number": 0,
+        "duration_seconds": 4.041577,
+        "error": null,
+        "finished_at": "2026-08-31T14:37:16.216728Z",
+        "query_id": "535e87c8-e8ba-4ccf-9751-7ea04aa192b9",
+        "stage_id": "remote-002-project_2",
+        "started_at": "2026-08-31T14:37:12.175151Z",
+        "state": "succeeded",
+        "task_id": "remote-002-project_2-task-00001",
+        "worker_id": "worker-2"
+      },
+      {
+        "attempt_id": "remote-004-exchange_project_2_global-read-task-00000-attempt-000",
+        "attempt_number": 0,
+        "duration_seconds": 4.064836,
+        "error": null,
+        "finished_at": "2026-08-31T14:37:28.526385Z",
+        "query_id": "535e87c8-e8ba-4ccf-9751-7ea04aa192b9",
+        "stage_id": "remote-004-exchange_project_2_global-read",
+        "started_at": "2026-08-31T14:37:24.461549Z",
+        "state": "succeeded",
+        "task_id": "remote-004-exchange_project_2_global-read-task-00000",
+        "worker_id": "worker-2"
+      },
+      {
+        "attempt_id": "remote-004-exchange_project_2_global-task-00000-attempt-000",
+        "attempt_number": 0,
+        "duration_seconds": 1.709796,
+        "error": {
+          "code": "TASK_FAILED",
+          "context": {
+            "attempt_id": "remote-004-exchange_project_2_global-task-00000-attempt-000",
+            "failure_kind": "network",
+            "query_id": "535e87c8-e8ba-4ccf-9751-7ea04aa192b9",
+            "stage_id": "remote-004-exchange_project_2_global",
+            "task_id": "remote-004-exchange_project_2_global-task-00000",
+            "worker_id": "worker-1"
+          },
+          "message": "Worker Task execution failed."
+        },
+        "finished_at": "2026-08-31T14:37:17.985538Z",
+        "query_id": "535e87c8-e8ba-4ccf-9751-7ea04aa192b9",
+        "stage_id": "remote-004-exchange_project_2_global",
+        "started_at": "2026-08-31T14:37:16.275742Z",
+        "state": "lost",
+        "task_id": "remote-004-exchange_project_2_global-task-00000",
+        "worker_id": "worker-1"
+      },
+      {
+        "attempt_id": "remote-004-exchange_project_2_global-task-00000-attempt-001",
+        "attempt_number": 1,
+        "duration_seconds": 4.048153,
+        "error": null,
+        "finished_at": "2026-08-31T14:37:24.395524Z",
+        "query_id": "535e87c8-e8ba-4ccf-9751-7ea04aa192b9",
+        "stage_id": "remote-004-exchange_project_2_global",
+        "started_at": "2026-08-31T14:37:20.347371Z",
+        "state": "succeeded",
+        "task_id": "remote-004-exchange_project_2_global-task-00000",
+        "worker_id": "worker-2"
+      },
+      {
+        "attempt_id": "remote-004-exchange_project_2_global-task-00001-attempt-000",
+        "attempt_number": 0,
+        "duration_seconds": 4.068609,
+        "error": null,
+        "finished_at": "2026-08-31T14:37:20.344349Z",
+        "query_id": "535e87c8-e8ba-4ccf-9751-7ea04aa192b9",
+        "stage_id": "remote-004-exchange_project_2_global",
+        "started_at": "2026-08-31T14:37:16.275740Z",
+        "state": "succeeded",
+        "task_id": "remote-004-exchange_project_2_global-task-00001",
+        "worker_id": "worker-2"
+      },
+      {
+        "attempt_id": "remote-005-order_3-task-00000-attempt-000",
+        "attempt_number": 0,
+        "duration_seconds": 4.036914,
+        "error": null,
+        "finished_at": "2026-08-31T14:37:32.615052Z",
+        "query_id": "535e87c8-e8ba-4ccf-9751-7ea04aa192b9",
+        "stage_id": "remote-005-order_3",
+        "started_at": "2026-08-31T14:37:28.578138Z",
+        "state": "succeeded",
+        "task_id": "remote-005-order_3-task-00000",
+        "worker_id": "worker-2"
+      }
+    ],
+    "lost_attempt": {
+      "attempt_id": "remote-004-exchange_project_2_global-task-00000-attempt-000",
+      "attempt_number": 0,
+      "duration_seconds": 1.709796,
+      "error": {
+        "code": "TASK_FAILED",
+        "context": {
+          "attempt_id": "remote-004-exchange_project_2_global-task-00000-attempt-000",
+          "failure_kind": "network",
+          "query_id": "535e87c8-e8ba-4ccf-9751-7ea04aa192b9",
+          "stage_id": "remote-004-exchange_project_2_global",
+          "task_id": "remote-004-exchange_project_2_global-task-00000",
+          "worker_id": "worker-1"
+        },
+        "message": "Worker Task execution failed."
+      },
+      "finished_at": "2026-08-31T14:37:17.985538Z",
+      "query_id": "535e87c8-e8ba-4ccf-9751-7ea04aa192b9",
+      "stage_id": "remote-004-exchange_project_2_global",
+      "started_at": "2026-08-31T14:37:16.275742Z",
+      "state": "lost",
+      "task_id": "remote-004-exchange_project_2_global-task-00000",
+      "worker_id": "worker-1"
+    },
+    "retry_event": {
+      "attempt_id": "remote-004-exchange_project_2_global-task-00000-attempt-001",
+      "attempt_number": 1,
+      "previous_attempt_id": "remote-004-exchange_project_2_global-task-00000-attempt-000",
+      "previous_error": {
+        "code": "TASK_FAILED",
+        "context": {
+          "attempt_id": "remote-004-exchange_project_2_global-task-00000-attempt-000",
+          "failure_kind": "network",
+          "query_id": "535e87c8-e8ba-4ccf-9751-7ea04aa192b9",
+          "stage_id": "remote-004-exchange_project_2_global",
+          "task_id": "remote-004-exchange_project_2_global-task-00000",
+          "worker_id": "worker-1"
+        },
+        "message": "Worker Task execution failed."
+      },
+      "previous_state": "lost",
+      "query_id": "535e87c8-e8ba-4ccf-9751-7ea04aa192b9",
+      "stage_id": "remote-004-exchange_project_2_global",
+      "task_id": "remote-004-exchange_project_2_global-task-00000",
+      "timestamp": "2026-08-31T14:37:20.347371Z",
+      "worker_id": "worker-2"
+    },
+    "succeeded_attempt": {
+      "attempt_id": "remote-004-exchange_project_2_global-task-00000-attempt-001",
+      "attempt_number": 1,
+      "duration_seconds": 4.048153,
+      "error": null,
+      "finished_at": "2026-08-31T14:37:24.395524Z",
+      "query_id": "535e87c8-e8ba-4ccf-9751-7ea04aa192b9",
+      "stage_id": "remote-004-exchange_project_2_global",
+      "started_at": "2026-08-31T14:37:20.347371Z",
+      "state": "succeeded",
+      "task_id": "remote-004-exchange_project_2_global-task-00000",
+      "worker_id": "worker-2"
+    }
+  },
+  "remote_query": {
+    "query_id": "535e87c8-e8ba-4ccf-9751-7ea04aa192b9",
+    "sql": "SELECT id, value FROM deployment_smoke.shared_numbers ORDER BY id",
+    "state": "succeeded"
+  },
+  "result": {
+    "columns": [
+      "id",
+      "value"
+    ],
+    "row_count": 3,
+    "rows": [
+      {
+        "id": 1,
+        "value": 10
+      },
+      {
+        "id": 2,
+        "value": 20
+      },
+      {
+        "id": 3,
+        "value": 30
+      }
+    ],
+    "sha256": "c6e4ae73a76e381812fef97718451fba740c57ad744e932cd3686037baeafc1d"
+  },
+  "shuffle": {
+    "bytes_read": 1506,
+    "bytes_written": 1506,
+    "partition_bytes": [
+      1506
+    ],
+    "partition_count": 1,
+    "partition_rows": [
+      3
+    ],
+    "records_read": 3,
+    "records_written": 3
+  },
+  "status": "passed",
+  "worker_registration": {
+    "active_worker_ids": [
+      "worker-1",
+      "worker-2"
+    ],
+    "count": 2
+  }
+}

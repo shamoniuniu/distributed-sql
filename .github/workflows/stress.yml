@@ -1,0 +1,60 @@
+name: One GiB Stress
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * 0"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: one-gib-stress
+  cancel-in-progress: false
+
+jobs:
+  stress:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12.11"
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.12.5"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Install locked dependencies
+        run: uv sync --dev --frozen
+
+      - name: Run independent one GiB stress acceptance
+        env:
+          RUN_TASK16_STRESS: "1"
+          TASK16_ARTIFACT_ROOT: artifacts/task16
+          TASK16_GENERATION_TIMEOUT: "900"
+          TASK16_QUERY_TIMEOUT: "900"
+        run: |
+          mkdir -p artifacts/task16
+          uv run pytest tests/test_task16_acceptance.py -m stress \
+            --junitxml artifacts/task16/stress-junit.xml \
+            --timeout 3720
+
+      - name: Upload stress evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: one-gib-stress-evidence
+          path: |
+            artifacts/task16/stress-junit.xml
+            artifacts/task16/task16-results.json
+            artifacts/task16/task16-summary.md
+          if-no-files-found: warn
+          retention-days: 30

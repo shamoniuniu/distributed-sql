@@ -1,0 +1,79 @@
+{
+  "control_plane": "HTTP/JSON",
+  "coordinator_pid": 20928,
+  "data_plane": "immutable Parquet files with SHA-256",
+  "distribution": {
+    "distribution-stage-task-0": {
+      "worker_id": "worker-1",
+      "worker_process_id": 5728
+    },
+    "distribution-stage-task-1": {
+      "worker_id": "worker-2",
+      "worker_process_id": 40672
+    }
+  },
+  "logical_worker_used": false,
+  "protocol": {
+    "payload_validation": "operation-specific Pydantic models",
+    "plan_format": "python-pickle-v5",
+    "plan_version": 1,
+    "task_api_authenticated": true
+  },
+  "protocol_version": 1,
+  "recovery": {
+    "artifact_checksum": "31cbf85851cff272cbe42a78a31fbd63764aaa648424f26357981def762a607c",
+    "attempts": [
+      {
+        "attempt_id": "recovery-stage-task-0-attempt-000",
+        "state": "lost",
+        "worker_id": "worker-1"
+      },
+      {
+        "attempt_id": "recovery-stage-task-0-attempt-001",
+        "state": "succeeded",
+        "worker_id": "worker-2"
+      }
+    ],
+    "killed_worker_id": "worker-1",
+    "result_worker_id": "worker-2",
+    "result_worker_process_id": 40672
+  },
+  "remote_query": {
+    "artifact_locations": [
+      "C:\\Users\\Admin\\AppData\\Local\\Temp\\pytest-of-Admin\\pytest-260\\test_real_worker_processes_exe0\\query-runtime\\results\\878fbb72ff1b\\e042522a770d7b1a\\result.parquet",
+      "C:\\Users\\Admin\\AppData\\Local\\Temp\\pytest-of-Admin\\pytest-260\\test_real_worker_processes_exe0\\query-runtime\\results\\878fbb72ff1b\\5f0815840209aada\\result.parquet",
+      "C:\\Users\\Admin\\AppData\\Local\\Temp\\pytest-of-Admin\\pytest-260\\test_real_worker_processes_exe0\\query-runtime\\results\\878fbb72ff1b\\2624fef44c45982e\\result.parquet",
+      "C:\\Users\\Admin\\AppData\\Local\\Temp\\pytest-of-Admin\\pytest-260\\test_real_worker_processes_exe0\\query-runtime\\results\\878fbb72ff1b\\1c201617a6875988\\result.parquet",
+      "C:\\Users\\Admin\\AppData\\Local\\Temp\\pytest-of-Admin\\pytest-260\\test_real_worker_processes_exe0\\query-runtime\\results\\878fbb72ff1b\\989a492da34a5561\\result.parquet",
+      "C:\\Users\\Admin\\AppData\\Local\\Temp\\pytest-of-Admin\\pytest-260\\test_real_worker_processes_exe0\\query-runtime\\results\\878fbb72ff1b\\c190fab39d84bf0e\\result.parquet"
+    ],
+    "rows": [
+      {
+        "id": 1
+      },
+      {
+        "id": 2
+      },
+      {
+        "id": 3
+      },
+      {
+        "id": 4
+      }
+    ],
+    "shuffle_locations": [
+      "C:\\Users\\Admin\\AppData\\Local\\Temp\\pytest-of-Admin\\pytest-260\\test_real_worker_processes_exe0\\query-runtime\\shuffle\\remote-query\\rem-5d3c66b75b02\\rem-3b17c916350c\\rem-1eac7577934a\\par-dd32721c7b26",
+      "C:\\Users\\Admin\\AppData\\Local\\Temp\\pytest-of-Admin\\pytest-260\\test_real_worker_processes_exe0\\query-runtime\\shuffle\\remote-query\\rem-5d3c66b75b02\\rem-e4672fc810d6\\rem-67e50bf2b906\\par-dd32721c7b26"
+    ],
+    "shuffle_records_read": 4,
+    "shuffle_records_written": 4,
+    "workers": [
+      "worker-1",
+      "worker-2"
+    ]
+  },
+  "worker_process_ids": {
+    "worker-1": 5728,
+    "worker-2": 40672
+  }
+}

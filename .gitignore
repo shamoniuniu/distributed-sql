@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.coverage
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.venv/
+.tools/
+build/
+dist/
+/data/
+/artifacts/task16/data/**/*.parquet
+*.egg-info/
+.env
+.distributed-sql/

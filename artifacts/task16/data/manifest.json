@@ -1,0 +1,243 @@
+{
+  "batch_rows": 64,
+  "datasets": [
+    "sort_input",
+    "join_left",
+    "join_right",
+    "aggregate_input"
+  ],
+  "files": [
+    {
+      "bytes": 33576505,
+      "dataset": "sort_input",
+      "path": "sort_input/part-00000.parquet",
+      "rows": 512,
+      "sha256": "680ac43e7f2c712b31d09c6e14cc2e2c42cd345a43e8529f160fd6540cb6829e"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "sort_input",
+      "path": "sort_input/part-00001.parquet",
+      "rows": 512,
+      "sha256": "93f3638de20d8ba8c57e98fcafe5f80b9a9f84f94961b99517fd69ced4af3469"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "sort_input",
+      "path": "sort_input/part-00002.parquet",
+      "rows": 512,
+      "sha256": "de19595e0423d8d87741574d2b4334f13b4fe31c7178c3d966a30fb546dcbf8c"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "sort_input",
+      "path": "sort_input/part-00003.parquet",
+      "rows": 512,
+      "sha256": "0440f884b049d3ce86f8e54f7a92d977d9d4d42f548871cf536487808b0a656a"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "sort_input",
+      "path": "sort_input/part-00004.parquet",
+      "rows": 512,
+      "sha256": "96457612e5031d234472297407b281d4d8eb4d35f40969b62f5fa7557385df62"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "sort_input",
+      "path": "sort_input/part-00005.parquet",
+      "rows": 512,
+      "sha256": "c009fbed0bba3e59c41dd66c35b6844375289a3f014ea5102c9e96f838c8948d"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "sort_input",
+      "path": "sort_input/part-00006.parquet",
+      "rows": 512,
+      "sha256": "e0d1a41edbe9a795e1afd007a902b985939c1ebfc110098215841c853cd3427a"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "sort_input",
+      "path": "sort_input/part-00007.parquet",
+      "rows": 512,
+      "sha256": "63410ad19f94d7daa0aedb2f96fe3c32361110ac969f32d056158c74027ff022"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "join_left",
+      "path": "join_left/part-00000.parquet",
+      "rows": 512,
+      "sha256": "e7be84a6fdda2bbdc7385244a97d6db879d2b20e56e93cf8d084db376a30b173"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "join_left",
+      "path": "join_left/part-00001.parquet",
+      "rows": 512,
+      "sha256": "5ae99dc1a77c85be89c5806438c86d2f5ff7d73a5c21da9df95379b9f87d744e"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "join_left",
+      "path": "join_left/part-00002.parquet",
+      "rows": 512,
+      "sha256": "f49284d1200f51240270a67f7a6a89b923068fdd9dd26f86c0b4e1598154c484"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "join_left",
+      "path": "join_left/part-00003.parquet",
+      "rows": 512,
+      "sha256": "c4653cec7ad1001776037b0a0c25022edc10ba2d6024c39243f1a0ebca4bd77e"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "join_left",
+      "path": "join_left/part-00004.parquet",
+      "rows": 512,
+      "sha256": "fa6fb57ab5ffd6fcca2e53daac034bad9b24ca257c25cf9a55647e6793a556aa"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "join_left",
+      "path": "join_left/part-00005.parquet",
+      "rows": 512,
+      "sha256": "2ba79ae46d18a8b1ebc424b0d1598561071181db68ea2ebd882bf8e41888d7a0"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "join_left",
+      "path": "join_left/part-00006.parquet",
+      "rows": 512,
+      "sha256": "95a34e784965f90c92bff2dd4207576d8636f0d05e9cd3bf5b795ed449df898a"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "join_left",
+      "path": "join_left/part-00007.parquet",
+      "rows": 512,
+      "sha256": "44cd09ad221cc3aad9126cd40e530a2dd4bf789276adc935401b9be29d2a517e"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "join_right",
+      "path": "join_right/part-00000.parquet",
+      "rows": 512,
+      "sha256": "06055f5b9d666b4bfa7354cda4547590332351bb138e180be66d969a932872b5"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "join_right",
+      "path": "join_right/part-00001.parquet",
+      "rows": 512,
+      "sha256": "ee692ac685d86aa884bce2aa06b12a8d7a504455e727bdc8ec2fb3a9dec4bbfd"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "join_right",
+      "path": "join_right/part-00002.parquet",
+      "rows": 512,
+      "sha256": "2da99249d5dbb6e1ec22c694bd1d14202fc7ffd34df50799c4976ef0d6d72f46"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "join_right",
+      "path": "join_right/part-00003.parquet",
+      "rows": 512,
+      "sha256": "bbeb93275acd82f8b4fafcaebee93586ef6d25f518e81728423ba9e829c885b2"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "join_right",
+      "path": "join_right/part-00004.parquet",
+      "rows": 512,
+      "sha256": "b6221d8419c20081541ee2a6cea4e7c7bb4af1753d6f23521a4e908aef0c46cb"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "join_right",
+      "path": "join_right/part-00005.parquet",
+      "rows": 512,
+      "sha256": "bc945f18e9f3e191b69f6ca50b636b81d2987757f789ea8930f36096933f8945"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "join_right",
+      "path": "join_right/part-00006.parquet",
+      "rows": 512,
+      "sha256": "5e4bb9fa9205e32a4c0673101ff0031ab2291b4e0313d444b98beee135f2d6af"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "join_right",
+      "path": "join_right/part-00007.parquet",
+      "rows": 512,
+      "sha256": "86a0540e98cf7fd10e100e2db6285a5c081ff5e04b569022897ffd56c4590242"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "aggregate_input",
+      "path": "aggregate_input/part-00000.parquet",
+      "rows": 512,
+      "sha256": "da712f75f133ebfd868994ed1b8d6586682d9192d81773c7487c9077956e81d3"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "aggregate_input",
+      "path": "aggregate_input/part-00001.parquet",
+      "rows": 512,
+      "sha256": "f911aae87cd2ca14bd152de759f1a17b9387222fbb4d86217442a0207cd5b652"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "aggregate_input",
+      "path": "aggregate_input/part-00002.parquet",
+      "rows": 512,
+      "sha256": "f2d0a1fc2d82cd339a19832e16fa212147379cbdf3d45d7346c1b0c8a71a5a6f"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "aggregate_input",
+      "path": "aggregate_input/part-00003.parquet",
+      "rows": 512,
+      "sha256": "f8a67a3397f4b024e8ff4233a028a64d1d734e37eb0b33e606be8268145b9f29"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "aggregate_input",
+      "path": "aggregate_input/part-00004.parquet",
+      "rows": 512,
+      "sha256": "bc571616baad65ce4fc00df99236d51011c1c0eb3f561bbddf8579c63f96d2d3"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "aggregate_input",
+      "path": "aggregate_input/part-00005.parquet",
+      "rows": 512,
+      "sha256": "16d05799592e35e205b37ade0465f677bd2f4c7ec31d720dca0f3d8b0c31fe43"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "aggregate_input",
+      "path": "aggregate_input/part-00006.parquet",
+      "rows": 512,
+      "sha256": "4414fc3650967310adce99b44135661a769c0733863ce2b79dbdc10d6c9668a7"
+    },
+    {
+      "bytes": 33576505,
+      "dataset": "aggregate_input",
+      "path": "aggregate_input/part-00007.parquet",
+      "rows": 512,
+      "sha256": "b96abea141ba8ea645e3cebd31dbed9c254bde0fa0bfa20a5e721efa17995089"
+    }
+  ],
+  "generated_at": "2026-08-31T09:30:22.106612+00:00",
+  "partition_count": 8,
+  "payload_bytes": 65536,
+  "rows_per_dataset": 4096,
+  "target_bytes": 1073741824,
+  "total_bytes": 1074448160,
+  "total_rows": 16384,
+  "version": 1
+}

@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="43.277" timestamp="2026-08-31T17:37:38.266522+08:00" hostname="5CD4279G2D-STO"><testcase classname="tests.test_task16_acceptance" name="test_one_gib_acceptance" time="38.616" /></testsuite></testsuites>

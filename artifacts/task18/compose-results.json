@@ -1,0 +1,11 @@
+{
+  "active_workers": [
+    "worker-1",
+    "worker-2"
+  ],
+  "catalog_persisted": true,
+  "query_id": "a5f25203-79e3-40e6-8e1c-96801fbf86f3",
+  "remote_runtime_root": "s3://distributed-sql/runtime",
+  "status": "passed",
+  "table_location": "s3://distributed-sql/deployment-smoke/imported-numbers"
+}

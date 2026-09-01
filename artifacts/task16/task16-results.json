@@ -1,0 +1,126 @@
+{
+  "data": {
+    "actual_bytes": 1074448160,
+    "actual_gib": 1.000658,
+    "example_files": {
+      "avro": "C:\\Users\\Admin\\\u5206\u5e03\u5f0f\u8ba1\u7b97\u7cfb\u7edf\\artifacts\\task16\\examples\\orders.avro",
+      "csv": "C:\\Users\\Admin\\\u5206\u5e03\u5f0f\u8ba1\u7b97\u7cfb\u7edf\\artifacts\\task16\\examples\\orders.csv",
+      "orc": "C:\\Users\\Admin\\\u5206\u5e03\u5f0f\u8ba1\u7b97\u7cfb\u7edf\\artifacts\\task16\\examples\\orders.orc",
+      "parquet": "C:\\Users\\Admin\\\u5206\u5e03\u5f0f\u8ba1\u7b97\u7cfb\u7edf\\artifacts\\task16\\examples\\orders.parquet"
+    },
+    "files": 32,
+    "manifest": "C:\\Users\\Admin\\\u5206\u5e03\u5f0f\u8ba1\u7b97\u7cfb\u7edf\\artifacts\\task16\\data\\manifest.json",
+    "root": "C:\\Users\\Admin\\\u5206\u5e03\u5f0f\u8ba1\u7b97\u7cfb\u7edf\\artifacts\\task16\\data",
+    "rows": 16384,
+    "target_bytes": 1073741824
+  },
+  "duration_seconds": 38.570127,
+  "generated_at": "2026-08-31T09:38:21.479464+00:00",
+  "reference": {
+    "engine": "DuckDB",
+    "usage": "reference result only; tested path is DistributedExecutor"
+  },
+  "status": "passed",
+  "task": 16,
+  "workers": {
+    "count": 2,
+    "execution_account_budget_bytes_each": 67108864,
+    "note": "Execution-account peaks cover charged operator rows. Process RSS also includes Python, PyArrow, scans, results, and runtime allocator retention."
+  },
+  "workloads": {
+    "aggregate": {
+      "duckdb_reference_seconds": 0.724219,
+      "engine_seconds": 10.921861,
+      "execution_account_budget_bytes": 67108864,
+      "execution_account_peak_bytes": 67074318,
+      "external_sort_runs": 0,
+      "hash_partitions": 0,
+      "process_rss_baseline_bytes": 1705570304,
+      "process_rss_margin_over_execution_budget_bytes": 2040786944,
+      "process_rss_peak_bytes": 2107895808,
+      "result": {
+        "columns": [
+          "group_key",
+          "payload",
+          "row_count",
+          "amount_sum"
+        ],
+        "rows": 64,
+        "sha256": "27670547e4c0a1078c1bfa0a67cf9d0a7a883fb06867335199152294d164a7af"
+      },
+      "shuffle_bytes_read": 1899955,
+      "shuffle_bytes_written": 1899955,
+      "shuffle_partition_count": 2,
+      "shuffle_records_read": 4160,
+      "shuffle_records_written": 4160,
+      "sort_aggregate_runs": 8,
+      "sort_merge_fallbacks": 0,
+      "spill_bytes": 855101,
+      "spill_count": 8,
+      "spill_files": 8,
+      "status": "passed"
+    },
+    "join": {
+      "duckdb_reference_seconds": 0.824178,
+      "engine_seconds": 13.680702,
+      "execution_account_budget_bytes": 67108864,
+      "execution_account_peak_bytes": 67074882,
+      "external_sort_runs": 0,
+      "hash_partitions": 16,
+      "process_rss_baseline_bytes": 1660129280,
+      "process_rss_margin_over_execution_budget_bytes": 2241712128,
+      "process_rss_peak_bytes": 2308820992,
+      "result": {
+        "columns": [
+          "id",
+          "left_payload",
+          "right_payload"
+        ],
+        "rows": 16,
+        "sha256": "9fe5acbf9ecdb29ff8f0e6bf3af6a6eebe715e6c8a9779ae2d148f7c39656554"
+      },
+      "shuffle_bytes_read": 3471590,
+      "shuffle_bytes_written": 3471590,
+      "shuffle_partition_count": 2,
+      "shuffle_records_read": 4128,
+      "shuffle_records_written": 4128,
+      "sort_aggregate_runs": 0,
+      "sort_merge_fallbacks": 0,
+      "spill_bytes": 9651243,
+      "spill_count": 81,
+      "spill_files": 81,
+      "status": "passed"
+    },
+    "sort": {
+      "duckdb_reference_seconds": 0.352171,
+      "engine_seconds": 11.275247,
+      "execution_account_budget_bytes": 67108864,
+      "execution_account_peak_bytes": 67090212,
+      "external_sort_runs": 5,
+      "hash_partitions": 0,
+      "process_rss_baseline_bytes": 128684032,
+      "process_rss_margin_over_execution_budget_bytes": 2068410368,
+      "process_rss_peak_bytes": 2135519232,
+      "result": {
+        "columns": [
+          "id",
+          "sort_key",
+          "payload"
+        ],
+        "rows": 16,
+        "sha256": "2debc5f1fafba43d773cf9546077e7376974e854233d3ca2f5f56d916c8e3267"
+      },
+      "shuffle_bytes_read": 11849941,
+      "shuffle_bytes_written": 11849941,
+      "shuffle_partition_count": 1,
+      "shuffle_records_read": 8192,
+      "shuffle_records_written": 8192,
+      "sort_aggregate_runs": 0,
+      "sort_merge_fallbacks": 0,
+      "spill_bytes": 898065,
+      "spill_count": 5,
+      "spill_files": 5,
+      "status": "passed"
+    }
+  }
+}

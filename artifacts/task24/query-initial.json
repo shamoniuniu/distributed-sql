@@ -1,0 +1,353 @@
+{
+  "active_workers": [
+    "worker-7685f445ff-7dlpp",
+    "worker-7685f445ff-p8xlz"
+  ],
+  "catalog": {
+    "namespace": {
+      "created_at": "2026-08-31T15:18:59.984222Z",
+      "name": "deployment_smoke",
+      "properties": {
+        "purpose": "deployment-smoke"
+      },
+      "updated_at": "2026-08-31T15:18:59.984222Z"
+    },
+    "table": {
+      "created_at": "2026-08-31T15:19:00.019496Z",
+      "format": "csv",
+      "location": "s3://distributed-sql/deployment-smoke/imported-numbers",
+      "name": "shared_numbers",
+      "namespace": "deployment_smoke",
+      "partition_keys": [
+        "id"
+      ],
+      "partition_strategy": "hash",
+      "partitions": [
+        {
+          "checksum": "a38a56a7a2c9e90253fbe0264a06c44bd8b600dbd092960ce9f616aede17dc2b",
+          "keys": [
+            "id"
+          ],
+          "location": "s3://distributed-sql/deployment-smoke/imported-numbers/data/bb6bbb271a35450a8a9fb11455701383/part-00000.csv",
+          "ordinal": 0,
+          "partition_id": "bb6bbb271a35450a8a9fb11455701383-00000",
+          "row_count": 1,
+          "size_bytes": 18,
+          "strategy": "hash"
+        },
+        {
+          "checksum": "e09bb3b5c88df1c32fb57c7291508022ecbf2881dc7632e10e8c23fd678b8a10",
+          "keys": [
+            "id"
+          ],
+          "location": "s3://distributed-sql/deployment-smoke/imported-numbers/data/bb6bbb271a35450a8a9fb11455701383/part-00001.csv",
+          "ordinal": 1,
+          "partition_id": "bb6bbb271a35450a8a9fb11455701383-00001",
+          "row_count": 2,
+          "size_bytes": 23,
+          "strategy": "hash"
+        }
+      ],
+      "properties": {},
+      "schema": {
+        "fields": [
+          {
+            "children": [],
+            "data_type": "int64",
+            "metadata": {},
+            "name": "id",
+            "nullable": false
+          },
+          {
+            "children": [],
+            "data_type": "int64",
+            "metadata": {},
+            "name": "value",
+            "nullable": false
+          }
+        ],
+        "metadata": {}
+      },
+      "statistics": {
+        "collected_at": "2026-08-31T15:19:00.081133Z",
+        "columns": {
+          "id": {
+            "average_size_bytes": 8.0,
+            "column_name": "id",
+            "distinct_count": 3,
+            "max_value": 3,
+            "min_value": 1,
+            "null_count": 0
+          },
+          "value": {
+            "average_size_bytes": 8.0,
+            "column_name": "value",
+            "distinct_count": 3,
+            "max_value": 30,
+            "min_value": 10,
+            "null_count": 0
+          }
+        },
+        "row_count": 3,
+        "size_bytes": 41,
+        "source": "import"
+      },
+      "updated_at": "2026-08-31T15:19:00.087733Z"
+    }
+  },
+  "catalog_persisted": false,
+  "query": {
+    "created_at": "2026-08-31T15:19:00.135664Z",
+    "error": null,
+    "logical_plan": {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [],
+              "node_id": "scan_1",
+              "node_type": "scan",
+              "output_schema": {
+                "fields": [
+                  {
+                    "children": [],
+                    "data_type": "int64",
+                    "metadata": {},
+                    "name": "id",
+                    "nullable": false
+                  },
+                  {
+                    "children": [],
+                    "data_type": "int64",
+                    "metadata": {},
+                    "name": "value",
+                    "nullable": false
+                  }
+                ],
+                "metadata": {}
+              },
+              "properties": {
+                "alias": "shared_numbers",
+                "table": "deployment_smoke.shared_numbers"
+              },
+              "statistics": null
+            }
+          ],
+          "node_id": "project_2",
+          "node_type": "project",
+          "output_schema": {
+            "fields": [
+              {
+                "children": [],
+                "data_type": "int64",
+                "metadata": {},
+                "name": "id",
+                "nullable": false
+              },
+              {
+                "children": [],
+                "data_type": "int64",
+                "metadata": {},
+                "name": "value",
+                "nullable": false
+              }
+            ],
+            "metadata": {}
+          },
+          "properties": {
+            "expressions": [
+              "shared_numbers.id AS id",
+              "shared_numbers.value AS value"
+            ]
+          },
+          "statistics": null
+        }
+      ],
+      "node_id": "order_3",
+      "node_type": "order",
+      "output_schema": {
+        "fields": [
+          {
+            "children": [],
+            "data_type": "int64",
+            "metadata": {},
+            "name": "id",
+            "nullable": false
+          },
+          {
+            "children": [],
+            "data_type": "int64",
+            "metadata": {},
+            "name": "value",
+            "nullable": false
+          }
+        ],
+        "metadata": {}
+      },
+      "properties": {
+        "order_by": [
+          "id ASC NULLS LAST"
+        ]
+      },
+      "statistics": null
+    },
+    "physical_plan": {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "node_id": "scan_1",
+                  "node_type": "scan",
+                  "output_schema": {
+                    "fields": [
+                      {
+                        "children": [],
+                        "data_type": "int64",
+                        "metadata": {},
+                        "name": "id",
+                        "nullable": false
+                      },
+                      {
+                        "children": [],
+                        "data_type": "int64",
+                        "metadata": {},
+                        "name": "value",
+                        "nullable": false
+                      }
+                    ],
+                    "metadata": {}
+                  },
+                  "properties": {
+                    "alias": "shared_numbers",
+                    "table": "deployment_smoke.shared_numbers"
+                  },
+                  "statistics": null
+                }
+              ],
+              "node_id": "project_2",
+              "node_type": "project",
+              "output_schema": {
+                "fields": [
+                  {
+                    "children": [],
+                    "data_type": "int64",
+                    "metadata": {},
+                    "name": "id",
+                    "nullable": false
+                  },
+                  {
+                    "children": [],
+                    "data_type": "int64",
+                    "metadata": {},
+                    "name": "value",
+                    "nullable": false
+                  }
+                ],
+                "metadata": {}
+              },
+              "properties": {
+                "expressions": [
+                  "shared_numbers.id AS id",
+                  "shared_numbers.value AS value"
+                ]
+              },
+              "statistics": null
+            }
+          ],
+          "node_id": "exchange_project_2_global",
+          "node_type": "exchange",
+          "output_schema": {
+            "fields": [
+              {
+                "children": [],
+                "data_type": "int64",
+                "metadata": {},
+                "name": "id",
+                "nullable": false
+              },
+              {
+                "children": [],
+                "data_type": "int64",
+                "metadata": {},
+                "name": "value",
+                "nullable": false
+              }
+            ],
+            "metadata": {}
+          },
+          "properties": {
+            "keys": [],
+            "partition_count": 1,
+            "strategy": "single"
+          },
+          "statistics": null
+        }
+      ],
+      "node_id": "order_3",
+      "node_type": "order",
+      "output_schema": {
+        "fields": [
+          {
+            "children": [],
+            "data_type": "int64",
+            "metadata": {},
+            "name": "id",
+            "nullable": false
+          },
+          {
+            "children": [],
+            "data_type": "int64",
+            "metadata": {},
+            "name": "value",
+            "nullable": false
+          }
+        ],
+        "metadata": {}
+      },
+      "properties": {
+        "order_by": [
+          "id ASC NULLS LAST"
+        ]
+      },
+      "statistics": null
+    },
+    "query_id": "2f436bf0-fb8f-4927-8027-6c988084c579",
+    "sql": "SELECT id, value FROM deployment_smoke.shared_numbers ORDER BY id",
+    "state": "succeeded",
+    "updated_at": "2026-08-31T15:19:00.519196Z"
+  },
+  "query_id": "2f436bf0-fb8f-4927-8027-6c988084c579",
+  "query_result": {
+    "columns": [
+      "id",
+      "value"
+    ],
+    "limit": 10,
+    "next_offset": null,
+    "offset": 0,
+    "query_id": "2f436bf0-fb8f-4927-8027-6c988084c579",
+    "returned": 3,
+    "rows": [
+      {
+        "id": 1,
+        "value": 10
+      },
+      {
+        "id": 2,
+        "value": 20
+      },
+      {
+        "id": 3,
+        "value": 30
+      }
+    ],
+    "total_rows": 3
+  },
+  "remote_runtime_root": "s3://distributed-sql/runtime",
+  "schema_version": 1,
+  "status": "passed",
+  "table_location": "s3://distributed-sql/deployment-smoke/imported-numbers"
+}

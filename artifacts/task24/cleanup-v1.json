@@ -1,0 +1,47 @@
+{
+    "schema_version":  1,
+    "task":  24,
+    "status":  "passed",
+    "commands":  [
+                     {
+                         "name":  "remove image archive",
+                         "exit_code":  0,
+                         "output":  "C:\\Users\\Admin\\分布式计算系统\\.task24-images.tar"
+                     },
+                     {
+                         "name":  "remove kubeconfig",
+                         "exit_code":  0,
+                         "output":  "C:\\Users\\Admin\\分布式计算系统\\.task24-kubeconfig.yaml"
+                     },
+                     {
+                         "name":  "remove K3s container and anonymous volumes",
+                         "exit_code":  0,
+                         "output":  "distributed-sql-task24-k3s"
+                     },
+                     {
+                         "name":  "remove K3s network",
+                         "exit_code":  0,
+                         "output":  "distributed-sql-task24"
+                     },
+                     {
+                         "name":  "remove temporary image distributed-sql-coordinator:task24-v1",
+                         "exit_code":  0,
+                         "output":  "Untagged: distributed-sql-coordinator:task24-v1\r\nDeleted: sha256:3190fe04577d8799110ee06f2f69b887826d3e8d586134c181b82a5167330464"
+                     },
+                     {
+                         "name":  "remove temporary image distributed-sql-worker:task24-v1",
+                         "exit_code":  0,
+                         "output":  "Untagged: distributed-sql-worker:task24-v1\r\nDeleted: sha256:dfe9ee23cb5729a1b2759eedd9aca2821380a19ef2f1ce6e341496d278e0664b"
+                     },
+                     {
+                         "name":  "remove temporary image distributed-sql-coordinator:task24-v2",
+                         "exit_code":  0,
+                         "output":  "Untagged: distributed-sql-coordinator:task24-v2\r\nDeleted: sha256:f35548de23f43ebbb0daee2afad29e2e7e5070fb8dcef23391331c8d069ab37c"
+                     },
+                     {
+                         "name":  "remove temporary image distributed-sql-worker:task24-v2",
+                         "exit_code":  0,
+                         "output":  "Untagged: distributed-sql-worker:task24-v2\r\nDeleted: sha256:fa1ac95301ab5d6c40d25e1f46df51fa4b6c3cc126102caedcf24b357054f67d"
+                     }
+                 ]
+}

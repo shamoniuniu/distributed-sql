@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: distributed-sql
+resources:
+  - namespace.yaml
+  - configmap.yaml
+  - secret.yaml
+  - storage.yaml
+  - coordinator.yaml
+  - workers.yaml
+  - minio.yaml

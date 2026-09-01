@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Distributed SQL Console</title>
+  <link rel="stylesheet" href="/web/app.css">
+</head>
+<body>
+  <svg class="icon-sprite" aria-hidden="true">
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m5 3 14 9-14 9V3z"/></symbol>
+    <symbol id="i-stop" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="1"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3m3 0-1 13H7L6 7m4 4v5m4-5v5"/></symbol>
+  </svg>
+
+  <header>
+    <strong>Distributed SQL</strong>
+    <span id="connection" class="muted">连接中</span>
+    <span class="spacer"></span>
+    <button id="refresh-all" class="icon-button" title="刷新 Catalog 与节点" aria-label="刷新">
+      <svg><use href="#i-refresh"></use></svg>
+    </button>
+  </header>
+
+  <div class="workspace">
+    <aside>
+      <section>
+        <div class="section-title">
+          <h2>Catalog</h2>
+          <button id="add-namespace" class="icon-button" title="新建 namespace" aria-label="新建 namespace">
+            <svg><use href="#i-plus"></use></svg>
+          </button>
+        </div>
+        <div id="catalog-tree" class="tree" aria-live="polite"></div>
+      </section>
+      <section>
+        <div class="section-title"><h2>节点</h2><span id="node-count" class="badge">0</span></div>
+        <div id="nodes" class="node-list" aria-live="polite"></div>
+      </section>
+    </aside>
+
+    <main>
+      <section class="editor">
+        <div class="toolbar">
+          <label for="sql">SQL 查询</label>
+          <span id="query-status" class="status">就绪</span>
+          <span class="spacer"></span>
+          <button id="explain" title="生成逻辑与物理计划">EXPLAIN</button>
+          <button id="cancel" class="danger" title="取消当前查询" disabled>
+            <svg><use href="#i-stop"></use></svg><span>取消</span>
+          </button>
+          <button id="run" class="primary" title="执行查询 (Ctrl+Enter)">
+            <svg><use href="#i-play"></use></svg><span>运行</span>
+          </button>
+        </div>
+        <textarea id="sql" spellcheck="false">SELECT * FROM default.orders LIMIT 100</textarea>
+      </section>
+
+      <nav class="tabs" aria-label="查询详情">
+        <button class="tab active" data-tab="results">结果</button>
+        <button class="tab" data-tab="plan">计划</button>
+        <button class="tab" data-tab="metrics">指标</button>
+        <button class="tab" data-tab="advisor">顾问</button>
+      </nav>
+      <section id="results" class="panel active">
+        <div id="result-meta" class="panel-meta">尚未执行查询</div>
+        <div class="table-scroll"><table id="result-table"></table></div>
+        <div class="pager">
+          <button id="previous-page" disabled>上一页</button>
+          <button id="next-page" disabled>下一页</button>
+        </div>
+      </section>
+      <section id="plan" class="panel"><pre id="plan-output">尚无计划</pre></section>
+      <section id="metrics" class="panel"><pre id="metrics-output">尚无指标</pre></section>
+      <section id="advisor" class="panel"><div id="advisor-output">尚无建议</div></section>
+    </main>
+  </div>
+
+  <dialog id="catalog-dialog">
+    <form id="catalog-form">
+      <div class="dialog-head"><strong id="dialog-title">Catalog 操作</strong><button type="button" id="close-dialog" title="关闭">x</button></div>
+      <label>操作
+        <select id="catalog-action">
+          <option value="namespace">新建 Namespace</option>
+          <option value="table">注册表</option>
+          <option value="import">导入数据</option>
+        </select>
+      </label>
+      <label>Namespace<input id="namespace-name" value="default" required></label>
+      <label id="table-name-row">表名<input id="table-name"></label>
+      <label id="payload-row">JSON 参数<textarea id="catalog-payload" spellcheck="false">{"schema":{"fields":[{"name":"id","data_type":"int64","nullable":false}]},"format":"parquet","location":"data/warehouse/orders"}</textarea></label>
+      <div class="dialog-actions"><button type="submit" class="primary">提交</button></div>
+      <output id="catalog-message"></output>
+    </form>
+  </dialog>
+
+  <script src="/web/app.js"></script>
+</body>
+</html>
