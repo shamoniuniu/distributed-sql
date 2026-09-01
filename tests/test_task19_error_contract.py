@@ -42,7 +42,7 @@ def _start_worker(port: int, temp_directory: Path) -> subprocess.Popen[bytes]:
             "PYTHONPATH": os.pathsep.join(
                 [
                     str(Path.cwd() / "src"),
-                    str(Path.cwd() / ".venv" / "Lib" / "site-packages"),
+                    os.environ.get("PYTHONPATH", ""),
                 ]
             ),
             "DISTRIBUTED_SQL_WORKER_ID": "worker-errors",
@@ -56,7 +56,7 @@ def _start_worker(port: int, temp_directory: Path) -> subprocess.Popen[bytes]:
     )
     return subprocess.Popen(
         [
-            getattr(sys, "_base_executable", sys.executable),
+            sys.executable,
             "-m",
             "distributed_sql.worker.main",
         ],

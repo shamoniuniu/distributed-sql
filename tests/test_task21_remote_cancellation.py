@@ -25,7 +25,7 @@ def _free_port() -> int:
 
 def _start_process(module: str, environment: dict[str, str]) -> subprocess.Popen[bytes]:
     return subprocess.Popen(
-        [getattr(sys, "_base_executable", sys.executable), "-m", module],
+        [sys.executable, "-m", module],
         env=environment,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
@@ -142,7 +142,7 @@ async def test_real_query_cancel_waits_for_workers_and_stops_later_stages(
             "PYTHONPATH": os.pathsep.join(
                 [
                     str(Path.cwd() / "src"),
-                    str(Path.cwd() / ".venv" / "Lib" / "site-packages"),
+                        os.environ.get("PYTHONPATH", ""),
                 ]
             ),
         }

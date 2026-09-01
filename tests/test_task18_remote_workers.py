@@ -165,7 +165,7 @@ def _start_process(
     environment: dict[str, str],
 ) -> subprocess.Popen[bytes]:
     return subprocess.Popen(
-        [getattr(sys, "_base_executable", sys.executable), "-m", module],
+        [sys.executable, "-m", module],
         env=environment,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
@@ -189,7 +189,7 @@ async def test_real_worker_processes_execute_and_retry_after_worker_death(
     base_environment["PYTHONUNBUFFERED"] = "1"
     task_auth_token = "task18-integration-token"
     base_environment["PYTHONPATH"] = os.pathsep.join(
-        [str(Path.cwd() / "src"), str(Path.cwd() / ".venv" / "Lib" / "site-packages")]
+        [str(Path.cwd() / "src"), os.environ.get("PYTHONPATH", "")]
     )
     coordinator_environment = base_environment | {
         "DISTRIBUTED_SQL_COORDINATOR_PORT": str(coordinator_port),
