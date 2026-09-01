@@ -10,6 +10,7 @@ build/
 dist/
 /data/
 /artifacts/task16/data/**/*.parquet
+【实践一】分布式计算系统.md
 *.egg-info/
 .env
 .distributed-sql/
