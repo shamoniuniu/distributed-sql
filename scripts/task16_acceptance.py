@@ -126,7 +126,10 @@ def current_rss_bytes() -> int:
 
         counters = ProcessMemoryCounters()
         counters.cb = ctypes.sizeof(counters)
-        kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+        win_dll = getattr(ctypes, "WinDLL", None)
+        if win_dll is None:
+            raise OSError("WinDLL is unavailable")
+        kernel32 = win_dll("kernel32", use_last_error=True)
         kernel32.GetCurrentProcess.restype = wintypes.HANDLE
         get_memory_info = kernel32.K32GetProcessMemoryInfo
         get_memory_info.argtypes = [
@@ -145,7 +148,10 @@ def current_rss_bytes() -> int:
     statm = Path("/proc/self/statm")
     if statm.exists():
         resident_pages = int(statm.read_text(encoding="ascii").split()[1])
-        return resident_pages * int(os.sysconf("SC_PAGE_SIZE"))  # type: ignore[attr-defined]
+        sysconf = getattr(os, "sysconf", None)
+        if sysconf is None:
+            raise OSError("sysconf is unavailable")
+        return resident_pages * int(sysconf("SC_PAGE_SIZE"))
     resource = importlib.import_module("resource")
 
     rss = int(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
